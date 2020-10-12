@@ -1,5 +1,3 @@
-const articleController = require('../controllers/articleController');
-
 const routes = (app) =>{
     const articleController = require('../controllers/articleController');
 

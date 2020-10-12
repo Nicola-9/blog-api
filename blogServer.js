@@ -28,10 +28,25 @@ mongoose.connect('mongodb://localhost/BlogDB', {
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...'));
 
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+
+    // Pass to next layer of middleware
+    next();
+});
+
 // Register routes endpoint
 expressRoutes.routes(app);
 
 // Start server
 app.listen(PORT, HOST);
 
-console.log(`TodoList RESTful Server is running on http://${HOST}:${PORT}`);
+console.log(`MyBlog RESTful Server is running on http://${HOST}:${PORT}`);
